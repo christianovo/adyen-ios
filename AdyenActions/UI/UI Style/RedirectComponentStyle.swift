@@ -16,9 +16,12 @@ public struct RedirectComponentStyle {
     /// The preferred color to tint the control buttons on the navigation bar and toolbar.
     public let preferredControlTintColor: UIColor
     
+	/// The preferred browser for the redirect component.
+	public let preferredInternalBrowserComponent: Bool
+
     /// The modal presentation style of the redirect component.
     public let modalPresentationStyle: UIModalPresentationStyle
-    
+
     /// Initializes the redirect component style.
     ///
     /// - Parameter preferredBarTintColor: The preferred color to tint the background of the navigation bar and toolbar.
@@ -26,9 +29,11 @@ public struct RedirectComponentStyle {
     /// - Parameter modalPresentationStyle: The modal presentation style of the redirect component.
     public init(preferredBarTintColor: UIColor? = nil,
                 preferredControlTintColor: UIColor = .systemBlue,
+				preferredInternalBrowserComponent: Bool = true,
                 modalPresentationStyle: UIModalPresentationStyle = .formSheet) {
         self.preferredBarTintColor = preferredBarTintColor
         self.preferredControlTintColor = preferredControlTintColor
+		self.preferredInternalBrowserComponent = preferredInternalBrowserComponent
         self.modalPresentationStyle = modalPresentationStyle
     }
     

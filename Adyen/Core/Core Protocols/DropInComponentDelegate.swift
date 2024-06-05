@@ -71,7 +71,15 @@ public protocol DropInComponentDelegate: AnyObject {
     ///   - component: The component that the user closed.
     ///   - dropInComponent: The drop in component that owns the `component`.
     func didCancel(component: PaymentComponent, from dropInComponent: AnyDropInComponent)
-    
+
+	/// Invoked when the action start a redirect only if is allowed to handle externally.
+	///
+	/// - Parameters:
+	///   - url: The url that is handled by the actiont.
+	///   - component: The component that handled the action.
+	///   - dropInComponent: The drop in component that owns the `component`.
+	func didStartRedirect(with url: URL, from component: ActionComponent, in: AnyDropInComponent)
+
 }
 
 /// Describes the methods a delegate of stored payment methods needs to implement.
@@ -93,4 +101,6 @@ public extension DropInComponentDelegate {
     func didCancel(component: PaymentComponent, from dropInComponent: AnyDropInComponent) {}
 
     func didOpenExternalApplication(component: ActionComponent, in dropInComponent: AnyDropInComponent) {}
+
+	func didStartRedirect(with url: URL, from component: ActionComponent, in: AnyDropInComponent) {}
 }

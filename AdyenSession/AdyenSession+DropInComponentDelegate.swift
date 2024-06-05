@@ -38,5 +38,9 @@ extension AdyenSession: DropInComponentDelegate {
     public func didOpenExternalApplication(component: ActionComponent, in dropInComponent: AnyDropInComponent) {
         didOpenExternalApplication(actionComponent: component)
     }
-    
+
+	public func didStartRedirect(with url: URL, from component: ActionComponent, in: AnyDropInComponent) {
+		didStartRedirect(with: url, from: component)
+	}
+
 }

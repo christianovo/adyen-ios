@@ -45,12 +45,21 @@ public protocol ActionComponentDelegate: AnyObject {
     ///   - error: The error that occurred.
     ///   - component: The component that failed.
     func didFail(with error: Error, from component: ActionComponent)
-    
+
+
+	/// Invoked when the action start a redirect only if is allowed to handle externally.
+	///
+	/// - Parameters:
+	///   - url: The url that is handled by the actiont.
+	///   - component: The component that handled the action.
+	func didStartRedirect(with url: URL, from component: ActionComponent)
+
 }
 
-/// provides a default empty implementation for ``didOpenExternalApplication(component:)``.
+/// provides a default empty implementations for some of the `ActionComponentDelegate` functions.
 public extension ActionComponentDelegate {
     
     func didOpenExternalApplication(component: ActionComponent) {}
-    
+	
+	func didStartRedirect(with url: URL, from component: ActionComponent) {}
 }

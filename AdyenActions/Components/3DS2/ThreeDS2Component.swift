@@ -257,6 +257,10 @@ extension ThreeDS2Component: ActionComponentDelegate {
         delegate?.didFail(with: error, from: self)
     }
 
+	public func didStartRedirect(with url: URL, from component: ActionComponent) {
+		delegate?.didStartRedirect(with: url, from: component)
+	}
+
 }
 
 extension ThreeDS2Component {

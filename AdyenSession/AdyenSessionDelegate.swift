@@ -57,6 +57,14 @@ public protocol AdyenSessionDelegate: AnyObject {
     /// - Returns: An instance conforming to the ``AdyenSessionPaymentDetailsHandler``
     /// protocol to take over, or nil to let ``AdyenSession`` handle the flow.
     func handlerForAdditionalDetails(in component: ActionComponent, session: AdyenSession) -> AdyenSessionPaymentDetailsHandler?
+
+	/// Invoked when the action start a redirect only if is allowed to handle externally.
+	///
+	/// - Parameters:
+	///   - url: The url that is handled by the action.
+	///   - component: The current action component object.
+	///   - session: The session object.
+	func didStartRedirect(with url: URL, component: ActionComponent, session: AdyenSession)
 }
 
 /// Provides default empty implementation for ``AdyenSessionDelegate``
@@ -67,6 +75,8 @@ public extension AdyenSessionDelegate {
     func handlerForAdditionalDetails(in component: ActionComponent, session: AdyenSession) -> AdyenSessionPaymentDetailsHandler? { nil }
     
     func didOpenExternalApplication(component: ActionComponent, session: AdyenSession) {}
+
+	func didStartRedirect(with url: URL, component: ActionComponent, session: AdyenSession) {}
 }
 
 /// Describes the interface to take over the step where data is provided for the payments call.

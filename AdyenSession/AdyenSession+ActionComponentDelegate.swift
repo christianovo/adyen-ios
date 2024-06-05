@@ -42,6 +42,11 @@ extension AdyenSession: ActionComponentDelegate {
     internal func didOpenExternalApplication(actionComponent: ActionComponent) {
         delegate?.didOpenExternalApplication(component: actionComponent, session: self)
     }
+
+	public func didStartRedirect(with url: URL, from component: ActionComponent) {
+		delegate?.didStartRedirect(with: url, component: component, session: self)
+	}
+
 }
 
 @_spi(AdyenInternal)

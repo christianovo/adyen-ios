@@ -98,7 +98,12 @@ extension DropInComponent: ActionComponentDelegate {
     public func didProvide(_ data: ActionComponentData, from component: ActionComponent) {
         delegate?.didProvide(data, from: component, in: self)
     }
-    
+
+	public func didStartRedirect(with url: URL, from component: ActionComponent) {
+		stopLoading()
+		delegate?.didStartRedirect(with: url, from: component, in: self)
+	}
+
 }
 
 extension DropInComponent: PreselectedPaymentMethodComponentDelegate {

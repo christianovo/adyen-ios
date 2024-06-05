@@ -126,7 +126,11 @@ public final class RedirectComponent: ActionComponent {
             if success {
                 self.delegate?.didOpenExternalApplication(component: self)
             } else {
-                self.openInAppBrowser(action)
+				if configuration.style?.preferredInternalBrowserComponent ?? true {
+					self.openInAppBrowser(action)
+				} else {
+					self.delegate?.didStartRedirect(with: action.url, from: self)
+				}
             }
         }
     }
@@ -139,7 +143,7 @@ public final class RedirectComponent: ActionComponent {
         browserComponent = component
         presentationDelegate?.present(component: component)
     }
-    
+
     // MARK: - Custom scheme link handling
 
     private func openCustomSchemeUrl(_ action: RedirectAction) {
@@ -228,5 +232,9 @@ extension RedirectComponent: ActionComponentDelegate {
     public func didOpenExternalApplication(component: ActionComponent) {
         delegate?.didOpenExternalApplication(component: self)
     }
-    
+
+	public func didStartRedirect(with url: URL, from component:  ActionComponent) {
+		delegate?.didStartRedirect(with: url, from: component)
+	}
+
 }
